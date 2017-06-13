@@ -7,29 +7,22 @@ import lombok.Setter;
 import org.springframework.data.cassandra.mapping.PrimaryKey;
 import org.springframework.data.cassandra.mapping.Table;
 
-import java.util.Date;
-import java.util.UUID;
-
 /**
- * Created by l_a_s on 01/06/2017.
+ * Created by l_a_s on 02/06/2017.
  */
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table
-public class UserMoves {
+public class Place {
 
     @PrimaryKey
-    private UUID id;
-    private String sessionId;
-    private String mobileId;
-    private int floor;
-    private String region;
-    private String category;
-    private Date date;
-    private int duration;
-
+    String name;
+    int floor;
+    String category;
+    float entryPointX;
+    float entryPointY;
+    int importantVisit;
 
 }

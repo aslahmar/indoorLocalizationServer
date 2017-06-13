@@ -1,35 +1,30 @@
 package com.ucergy.ilocator.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.cassandra.mapping.PrimaryKey;
-import org.springframework.data.cassandra.mapping.Table;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 /**
- * Created by l_a_s on 01/06/2017.
+ * Created by l_a_s on 04/06/2017.
  */
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
-public class UserMoves {
+public class UserMovesReceived implements Serializable {
 
-    @PrimaryKey
-    private UUID id;
-    private String sessionId;
     private String mobileId;
-    private int floor;
+    private String floor;
     private String region;
     private String category;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
     private int duration;
-
 
 }

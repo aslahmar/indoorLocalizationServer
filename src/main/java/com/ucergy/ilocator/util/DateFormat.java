@@ -6,7 +6,7 @@ import java.util.Date;
 
 public final class DateFormat {
 
-    private static Date getDateDayMonthYearFormat(Date date) {
+    public static Date getDateDayMonthYearFormat(Date date) {
         // Display a date in day, month, year format
         java.text.DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String today = formatter.format(date);
