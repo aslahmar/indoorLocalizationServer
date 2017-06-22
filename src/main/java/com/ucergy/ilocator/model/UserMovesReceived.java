@@ -20,7 +20,7 @@ import java.util.Date;
 public class UserMovesReceived implements Serializable {
 
     private String mobileId;
-    private String floor;
+    private int floor;
     private String region;
     private String category;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

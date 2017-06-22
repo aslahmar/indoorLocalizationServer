@@ -31,7 +31,6 @@ public class RegionsPredictorImpl implements RegionsPredictor {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
         sortedImportant = keepImportantElement(sortedMap);
-        printMap(sortedImportant);
         return sortedImportant;
     }
 
@@ -106,7 +105,7 @@ public class RegionsPredictorImpl implements RegionsPredictor {
 
             predicate = getFrequentItemByCategory(userPosition, userCategories, userPosition.get(userPosition.size() - 1));
 
-        } else if (nextItems.size() > 1) {
+        } else if (nextItems.size() >= 1) {
 
             Map<String, Integer> positionFrequency = new HashMap<>();
             List<String> listDistinct = nextItems.stream().distinct().collect(Collectors.toList());
@@ -168,7 +167,7 @@ public class RegionsPredictorImpl implements RegionsPredictor {
 
             predicate = "Empty";
 
-        } else if (nextItems.size() > 1) {
+        } else if (nextItems.size() >= 1) {
 
             Map<String, Integer> positionFrequency = new HashMap<>();
             List<String> listDistinct = nextItems.stream().distinct().collect(Collectors.toList());
@@ -179,11 +178,7 @@ public class RegionsPredictorImpl implements RegionsPredictor {
 
             // Si la liste contient 1 element c'est lui le prédicted
 
-            if (listDistinct.size() == 1) {
-
-                predicate = listDistinct.get(0);
-                // Si plus on récupère les trois premier
-            } else if (listDistinct.size() > 1) {
+            if (listDistinct.size() >= 1) {
 
                 for (String possible : listDistinct) {
                     positionFrequency.put(possible, Collections.frequency(nextItems, possible));
@@ -202,14 +197,17 @@ public class RegionsPredictorImpl implements RegionsPredictor {
 
                     }
                 }
+                for (Place placeCategoryy : placesFiltredByCategory) {
+                    placesFiltred.add(placeCategoryy);
+                }
 
                 for (Place placeCategory : placesFiltredByCategory) {
 
                     for (String region : userPosition) {
 
-                        if (!region.equalsIgnoreCase(placeCategory.getName()) && placeService.findByName(region).getCategory().equalsIgnoreCase(placeCategory.getCategory())) {
+                        if (region.equalsIgnoreCase(placeCategory.getName())) {
 
-                            placesFiltred.add(placeCategory);
+                            placesFiltred.remove(placeCategory);
 
                         }
                     }

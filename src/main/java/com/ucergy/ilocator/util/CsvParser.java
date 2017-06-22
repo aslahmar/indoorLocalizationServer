@@ -72,4 +72,21 @@ public final class CsvParser {
             return condition;
         }
     }
+
+    public static ArrayList<String> ParseCsvFileAndGetColumn(String filePath, int column) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader(new ClassPathResource(filePath).getFile()));
+        String lineSource = "";
+        ArrayList<String> pathList = new ArrayList<>();
+
+        while ((lineSource = br.readLine()) != null) {
+
+            String[] elements = lineSource.split(",");
+
+
+            pathList.add(elements[column]);
+
+        }
+        return pathList;
+    }
 }

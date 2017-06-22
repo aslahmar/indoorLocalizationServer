@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by l_a_s on 02/06/2017.
  */
-public interface userMovesService {
+public interface UserMovesService {
 
     List<UserMoves> findAllUserMoves();
 
